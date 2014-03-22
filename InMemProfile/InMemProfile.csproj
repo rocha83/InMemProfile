@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8ADC7B10-1AE1-4ABE-996A-C368BBE2EF74}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rochas.InMemProfile</RootNamespace>
+    <AssemblyName>Rochas.InMemProfile</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Annotations\AccessProfile.cs" />
+    <Compile Include="AccessValidator.cs" />
+    <Compile Include="Domain\EntityAccessProfile.cs" />
+    <Compile Include="Annotations\Funcionality.cs" />
+    <Compile Include="Encrypter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Actions\ActionsRepository.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ActionsRepository.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Actions\ActionsRepository.pt.Designer.cs">
+      <DependentUpon>ActionsRepository.pt.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Actions\ActionsRepository.es.Designer.cs">
+      <DependentUpon>ActionsRepository.es.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Funcionalities\FuncionalitiesRepository.pt.Designer.cs">
+      <DependentUpon>FuncionalitiesRepository.pt.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Funcionalities\FuncionalitiesRepository.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FuncionalitiesRepository.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FuncionalityGroups\FuncionalityGroupsRepository.pt.Designer.cs">
+      <DependentUpon>FuncionalityGroupsRepository.pt.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\FuncionalityGroups\FuncionalityGroupsRepository.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FuncionalityGroupsRepository.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FuncionalitySubGroups\FuncionalitySubGroupsRepository.pt.Designer.cs">
+      <DependentUpon>FuncionalitySubGroupsRepository.pt.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\FuncionalitySubGroups\FuncionalitySubGroupsRepository.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FuncionalitySubGroupsRepository.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\SystemModules\SystemModulesRepository.pt.Designer.cs">
+      <DependentUpon>SystemModulesRepository.pt.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\SystemModules\SystemModulesRepository.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SystemModulesRepository.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Actions\ActionsRepository.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActionsRepository.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Actions\ActionsRepository.pt.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActionsRepository.pt.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Actions\ActionsRepository.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActionsRepository.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Funcionalities\FuncionalitiesRepository.pt.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FuncionalitiesRepository.pt.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Funcionalities\FuncionalitiesRepository.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FuncionalitiesRepository.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FuncionalityGroups\FuncionalityGroupsRepository.pt.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FuncionalityGroupsRepository.pt.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FuncionalityGroups\FuncionalityGroupsRepository.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FuncionalityGroupsRepository.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FuncionalitySubGroups\FuncionalitySubGroupsRepository.pt.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FuncionalitySubGroupsRepository.pt.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FuncionalitySubGroups\FuncionalitySubGroupsRepository.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FuncionalitySubGroupsRepository.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SystemModules\SystemModulesRepository.pt.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SystemModulesRepository.pt.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SystemModules\SystemModulesRepository.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SystemModulesRepository.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
