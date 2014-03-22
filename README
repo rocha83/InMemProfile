@@ -1,0 +1,6 @@
+A C# In-Memory Class-Level Access Profile Controller that works with a simple Encrypted BinaryProfileKey,
+abstracting the use of database connections to do this.
+
+Fast and Usual in many environments, enjoy it ;-)
+
+Regards
