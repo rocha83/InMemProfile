@@ -153,6 +153,9 @@
   <data name="Reprove" xml:space="preserve">
     <value>Reprove</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Sparen</value>
+  </data>
   <data name="View" xml:space="preserve">
     <value>Anzeigen</value>
   </data>
