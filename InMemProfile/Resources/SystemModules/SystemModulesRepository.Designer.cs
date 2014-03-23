@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Rochas.InMemProfile.Resources.SystemModules {
+namespace System.Security.InMemProfile.Resources.SystemModules {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Rochas.InMemProfile.Resources.SystemModules {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Rochas.InMemProfile.Resources.SystemModules.SystemModulesRepository", typeof(SystemModulesRepository).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("System.Security.InMemProfile.Resources.SystemModules.SystemModulesRepository", typeof(SystemModulesRepository).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

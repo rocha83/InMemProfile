@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Rochas.InMemProfile.Resources.FuncionalitySubGroups {
+namespace System.Security.InMemProfile.Resources.FuncionalitySubGroups {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Rochas.InMemProfile.Resources.FuncionalitySubGroups {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Rochas.InMemProfile.Resources.FuncionalitySubGroups.FuncionalitySubGroupsReposito" +
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("System.Security.InMemProfile.Resources.FuncionalitySubGroups.FuncionalitySubGroupsReposito" +
                             "ry", typeof(FuncionalitySubGroupsRepository).Assembly);
                     resourceMan = temp;
                 }

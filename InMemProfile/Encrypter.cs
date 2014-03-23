@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Collections;
 using System.Security.Cryptography;
 
-namespace Rochas.InMemProfile.Security
+namespace System.Security.InMemProfile 
 {
 	public class Encrypter : IDisposable
     {

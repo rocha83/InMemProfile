@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Rochas.InMemProfile
+namespace System.Security.InMemProfile
 {
     public class Funcionality : Attribute
     {

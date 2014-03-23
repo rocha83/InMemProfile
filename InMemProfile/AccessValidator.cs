@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Reflection;
 using System.Linq;
-using Rochas.InMemProfile.Security;
 
-namespace Rochas.InMemProfile
+namespace System.Security.InMemProfile
 {
 	public class AccessValidator
     {

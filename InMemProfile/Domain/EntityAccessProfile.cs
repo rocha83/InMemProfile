@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Rochas.InMemProfile
+namespace System.Security.InMemProfile
 {
     public class EntityAccessProfile
     {
