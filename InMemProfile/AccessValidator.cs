@@ -20,6 +20,13 @@ namespace System.Security.InMemProfile
 
         #region Public Methods
 
+        public static bool ValidatePassword(string cryptoPwd, string pwd)
+        {
+            Encrypter cripto = new Encrypter();
+
+            return cryptoPwd.Equals(cripto.EncryptText(pwd));
+        }
+
         public Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, List<string>>>>> ListFuncionalities(string assemblyPath, string profileKey)
         {
             Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, List<string>>>>> result =

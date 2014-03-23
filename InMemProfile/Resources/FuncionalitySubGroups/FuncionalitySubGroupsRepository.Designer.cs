@@ -39,8 +39,8 @@ namespace System.Security.InMemProfile.Resources.FuncionalitySubGroups {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("System.Security.InMemProfile.Resources.FuncionalitySubGroups.FuncionalitySubGroupsReposito" +
-                            "ry", typeof(FuncionalitySubGroupsRepository).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("System.Security.InMemProfile.Resources.FuncionalitySubGroups.FuncionalitySubGroup" +
+                            "sRepository", typeof(FuncionalitySubGroupsRepository).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -7,8 +7,8 @@
     <ProjectGuid>{8ADC7B10-1AE1-4ABE-996A-C368BBE2EF74}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rochas.InMemProfile</RootNamespace>
-    <AssemblyName>Rochas.InMemProfile</AssemblyName>
+    <RootNamespace>System.Security.InMemProfile</RootNamespace>
+    <AssemblyName>System.Security.InMemProfile</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
