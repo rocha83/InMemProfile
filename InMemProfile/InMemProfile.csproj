@@ -61,6 +61,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\Actions\ActionsRepository.fr.Designer.cs">
+      <DependentUpon>ActionsRepository.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Actions\ActionsRepository.de.Designer.cs">
+      <DependentUpon>ActionsRepository.de.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\Funcionalities\FuncionalitiesRepository.pt.Designer.cs">
       <DependentUpon>FuncionalitiesRepository.pt.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -114,6 +124,14 @@
     <EmbeddedResource Include="Resources\Actions\ActionsRepository.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ActionsRepository.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Actions\ActionsRepository.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActionsRepository.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Actions\ActionsRepository.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActionsRepository.de.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Funcionalities\FuncionalitiesRepository.pt.resx">
       <Generator>ResXFileCodeGenerator</Generator>

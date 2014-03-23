@@ -118,42 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Add" xml:space="preserve">
-    <value>Incluir</value>
+    <value>Hinzufügen</value>
   </data>
   <data name="Approve" xml:space="preserve">
-    <value>Aprobar</value>
+    <value>Genehmigen</value>
   </data>
   <data name="Create" xml:space="preserve">
     <value>Crear</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Borrar</value>
+    <value>Löschen</value>
   </data>
   <data name="Disable" xml:space="preserve">
-    <value>Inhabilitar</value>
+    <value>Deaktivieren</value>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Editar</value>
+    <value>Edieren</value>
   </data>
   <data name="Enable" xml:space="preserve">
-    <value>Habilitar</value>
+    <value>Ermöglichen</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>Exportar</value>
+    <value>Export</value>
   </data>
   <data name="List" xml:space="preserve">
-    <value>Listar</value>
+    <value>Auflistung</value>
   </data>
   <data name="Print" xml:space="preserve">
-    <value>Imprimir</value>
+    <value>Drucken</value>
   </data>
   <data name="Remove" xml:space="preserve">
-    <value>Retirar</value>
+    <value>Entfernen</value>
   </data>
   <data name="Reprove" xml:space="preserve">
-    <value>Reprender</value>
+    <value>Reprove</value>
   </data>
   <data name="View" xml:space="preserve">
-    <value>Ver</value>
+    <value>Anzeigen</value>
   </data>
 </root>
