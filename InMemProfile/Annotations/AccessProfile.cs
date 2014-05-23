@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace System.Security.InMemProfile
+namespace System.Security.InMemProfile.Annotations
 {
     public class AccessProfile : Attribute
     {

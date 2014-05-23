@@ -27,16 +27,19 @@ namespace System.Security.InMemProfile
             return cryptoPwd.Equals(cripto.EncryptText(pwd));
         }
 
-        public Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, List<string>>>>> ListFuncionalities(string assemblyPath, string profileKey)
+        public static Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, List<string>>>>> ListFuncionalities(string domainAssemblyPath, string controllerAssemblyPath, string profileKey)
         {
             Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, List<string>>>>> result =
                             new Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, List<string>>>>>();
 
-            IEnumerable<Type> systemEntities = GetSystemEntities(assemblyPath);
+            Assembly controllerAssembly;
+            IEnumerable<Type> systemEntities = GetSystemEntities(domainAssemblyPath, out controllerAssembly);
 
             foreach (Type entity in systemEntities)
             {
-                if (CheckPermission(entity, profileKey))
+                var ctrlAssemblyInstance = Assembly.LoadFrom(controllerAssemblyPath);
+
+                if (CheckPermission(entity.Name, ctrlAssemblyInstance, profileKey))
                 {
                     var entityFuncionality = entity.GetCustomAttributes(true).
                                                     Where(ant => ant.GetType().
@@ -61,11 +64,11 @@ namespace System.Security.InMemProfile
 
                     var entityDisplayName = entity.GetCustomAttributes(true).
                                                    Where(ant => ant.GetType().
-                                                   Name.Equals("DisplayName")).
+                                                   Name.Equals("DisplayNameAttribute")).
                                                    FirstOrDefault();
 
-                    string displayName = entityDisplayName.GetType().GetField("DisplayName").
-                                                           GetValue(entityFuncionality).ToString();
+                    string displayName = entityDisplayName.GetType().GetProperty("DisplayName").
+                                                           GetValue(entityDisplayName, null).ToString();
 
                     if (!subGroups.Keys.Any(key => key.Equals(funcionalitySubGroup)))
                         subGroups.Add(funcionalitySubGroup, new Dictionary<string, Dictionary<string, List<string>>>());
@@ -110,9 +113,9 @@ namespace System.Security.InMemProfile
             return result;
         }
 
-        public static bool CheckPermission(object entity, string profileKey)
+        public static bool CheckPermission(string entityName, Assembly controllerAssembly, string profileKey)
         {
-            return checkPermission(entity.GetType(), profileKey);
+            return checkPermission(controllerAssembly, entityName, profileKey);
         }
 
         public static bool CheckPermission(int funcPosition, string profileKey)
@@ -120,15 +123,15 @@ namespace System.Security.InMemProfile
             return getBinaryProfileKey(profileKey)[funcPosition];
         }
 
-        public static IEnumerable<Type> GetSystemEntities(string assemblyPath)
+        public static IEnumerable<Type> GetSystemEntities(string assemblyPath, out Assembly entitiesLib)
         {
             string libsPath = ConfigurationManager.AppSettings["BinPath"];
 
-            Assembly entitiesLib = Assembly.LoadFrom(string.Concat(libsPath, assemblyPath));
+            entitiesLib = Assembly.LoadFrom(string.Concat(libsPath, assemblyPath));
 
             IEnumerable<Type> entities = entitiesLib.GetTypes()
-                                          .Where(et => et.GetCustomAttributes(true)
-                                          .Any(ant => ant.GetType().Name.Equals("Funcionality")));
+                                         .Where(et => et.GetCustomAttributes(true)
+                                         .Any(ant => ant.GetType().Name.Equals("Funcionality")));
 
             return entities;
         }
@@ -155,22 +158,26 @@ namespace System.Security.InMemProfile
             return decryptedKey;
         }
 
-        internal static bool checkPermission(Type entityType, string profileKey)
+        internal static bool checkPermission(Assembly controllerAssembly, string entityTypeName, string profileKey)
         {
-            bool verifyResult = false;
             bool[] decryptedProfileKey = getBinaryProfileKey(profileKey);
 
-            foreach (object attrib in entityType.GetCustomAttributes(true))
-                if (attrib.GetType().Name.Equals("AccessProfile"))
+            Type profileType = null;
+            foreach (var fndType in controllerAssembly.GetTypes())
+            {
+                if (fndType.Name.Equals("EntityAccessProfile"))
                 {
-                    int profileCode = int.Parse(attrib.GetType().GetField("ProfileCode")
-                                                                .GetValue(attrib).ToString());
-
-                    verifyResult = decryptedProfileKey[profileCode];
+                    profileType = fndType;
                     break;
                 }
+            }
 
-            return verifyResult;
+            var accessControl =  Activator.CreateInstance(profileType);
+
+            int profileCode = int.Parse(accessControl.GetType().GetField(entityTypeName)
+                                        .GetValue(accessControl).ToString());
+
+            return decryptedProfileKey[profileCode];
         }
 
         #endregion

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace System.Security.InMemProfile
+namespace System.Security.InMemProfile.Annotations
 {
     public class Funcionality : Attribute
     {
