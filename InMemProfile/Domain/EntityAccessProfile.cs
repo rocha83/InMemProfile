@@ -4,39 +4,38 @@ using System.Text;
 
 namespace System.Security.InMemProfile
 {
-    public class EntityAccessProfile
+     class EntityAccessProfile
     {
-        public const int AccessControl = 0;
+         const int AccessControl = 0;
         
-        public const int Entity1 = 1;
-        public const int Entity1_Get = 2;
-        public const int Entity1_List = 3;
-        public const int Entity1_Insert = 4;
-        public const int Entity1_Update = 5;
-        public const int Entity1_Delete = 6;
-        public const int Entity1_Print = 7;
-        public const int Entity1_Export = 8;
-        public const int Entity1_Approve = 9;
+         const int Entity1 = 1;
+         const int Entity1_Get = 2;
+         const int Entity1_List = 3;
+         const int Entity1_Insert = 4;
+         const int Entity1_Update = 5;
+         const int Entity1_Delete = 6;
+         const int Entity1_Print = 7;
+         const int Entity1_Export = 8;
+         const int Entity1_Approve = 9;
 
-        public const int Entity2 = 10;
-        public const int Entity2_Get = 11;
-        public const int Entity2_List = 12;
-        public const int Entity2_Insert = 13;
-        public const int Entity2_Update = 14;
-        public const int Entity2_Delete = 15;
-        public const int Entity2_Print = 16;
-        public const int Entity2_Export = 17;
-        public const int Entity2_Approve = 18;
+         const int Entity2 = 10;
+         const int Entity2_Get = 11;
+         const int Entity2_List = 12;
+         const int Entity2_Insert = 13;
+         const int Entity2_Update = 14;
+         const int Entity2_Delete = 15;
+         const int Entity2_Print = 16;
+         const int Entity2_Export = 17;
+         const int Entity2_Approve = 18;
 
-        public const int Entity3 = 19;
-        public const int Entity3_Get = 20;
-        public const int Entity3_List = 21;
-        public const int Entity3_Insert = 22;
-        public const int Entity3_Update = 23;
-        public const int Entity3_Delete = 24;
-        public const int Entity3_Print = 25;
-        public const int Entity3_Export = 26;
-        public const int Entity3_Approve = 27;
-        
+         const int Entity3 = 19;
+         const int Entity3_Get = 20;
+         const int Entity3_List = 21;
+         const int Entity3_Insert = 22;
+         const int Entity3_Update = 23;
+         const int Entity3_Delete = 24;
+         const int Entity3_Print = 25;
+         const int Entity3_Export = 26;
+         const int Entity3_Approve = 27;       
     }
 }

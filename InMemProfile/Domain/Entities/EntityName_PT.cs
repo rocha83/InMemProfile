@@ -5,7 +5,7 @@ using System.Text;
 
 namespace System.Security.InMemProfile
 {
-    public class EntityName_PT
+    class EntityName_PT
     {
         
     }

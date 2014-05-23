@@ -59,8 +59,13 @@ namespace System.Security.InMemProfile
 
                     var subGroups = result[funcionalityGroup];
 
-                    string displayName  = entityFuncionality.GetType().GetField("DisplayName").
-                                                             GetValue(entityFuncionality).ToString();
+                    var entityDisplayName = entity.GetCustomAttributes(true).
+                                                   Where(ant => ant.GetType().
+                                                   Name.Equals("DisplayName")).
+                                                   FirstOrDefault();
+
+                    string displayName = entityDisplayName.GetType().GetField("DisplayName").
+                                                           GetValue(entityFuncionality).ToString();
 
                     if (!subGroups.Keys.Any(key => key.Equals(funcionalitySubGroup)))
                         subGroups.Add(funcionalitySubGroup, new Dictionary<string, Dictionary<string, List<string>>>());
@@ -69,10 +74,6 @@ namespace System.Security.InMemProfile
 
                     var entityAttributes = entity.GetProperties().Where(ent => ent.GetCustomAttributes(true)
                                                                  .Any(atb => atb.GetType().Name.Contains("DisplayName")));
-
-                    var entityMethods = entity.GetMethods().Where(ent => ent.GetCustomAttributes(true)
-                                                           .Any(atb => atb is DisplayNameAttribute
-                                                                              || atb is AccessProfile));
 
                     Dictionary<string, List<string>> funcionalityAttributes;
                     string funcionalityAccess = string.Empty;
@@ -93,31 +94,6 @@ namespace System.Security.InMemProfile
                                                                                      FirstOrDefault()).DisplayName;
                             if (!attributeDescriptions.Contains(attribDescription))
                                 attributeDescriptions.Add(attribDescription);
-                        }
-
-                        foreach (var method in entityMethods)
-                        {
-                            int methodProfileCode = -1;
-
-                            var annotation = method.GetCustomAttributes(true)
-                                                   .FirstOrDefault(ca => ca.GetType().Name.Equals("AccessProfile"));
-
-                            if (annotation != null)
-                                methodProfileCode = int.Parse(annotation.GetType().GetField("ProfileCode")
-                                                                                  .GetValue(annotation).ToString());
-
-                            if ((methodProfileCode > -1)
-                                && (CheckPermission(methodProfileCode, profileKey))
-                                                    || method.Name.Equals("Save")
-                                                    || method.Name.Equals("Close"))
-                            {
-                                string methodDescription = ((DisplayNameAttribute)method.GetCustomAttributes(true)
-                                                                                        .Where(atb => atb.GetType()
-                                                                                        .Name.Contains("DisplayName"))
-                                                                                        .FirstOrDefault()).DisplayName;
-                                if (!attributeDescriptions.Contains(methodDescription))
-                                    attributeDescriptions.Add(methodDescription);
-                            }
                         }
 
                         if (!funcionalityAttributes.Keys.Any(key => key.Equals(funcionalityAccess)))

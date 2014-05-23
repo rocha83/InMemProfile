@@ -5,7 +5,7 @@ using System.Text;
 
 namespace System.Security.InMemProfile
 {
-    public class Funcionality_DE
+    class Funcionality_DE
     {
         
     }
