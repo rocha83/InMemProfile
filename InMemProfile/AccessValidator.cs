@@ -27,10 +27,10 @@ namespace System.Security.InMemProfile
             return cryptoPwd.Equals(cripto.EncryptText(pwd));
         }
 
-        public static Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, List<string>>>>> ListFuncionalities(string domainAssemblyPath, string controllerAssemblyPath, string profileKey)
+        public static Dictionary<string, Dictionary<string, Dictionary<string, string>>> ListFuncionalities(string domainAssemblyPath, string controllerAssemblyPath, string profileKey)
         {
-            Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, List<string>>>>> result =
-                            new Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, List<string>>>>>();
+            Dictionary<string, Dictionary<string, Dictionary<string, string>>> result =
+                            new Dictionary<string, Dictionary<string, Dictionary<string, string>>>();
 
             Assembly controllerAssembly;
             IEnumerable<Type> systemEntities = GetSystemEntities(domainAssemblyPath, out controllerAssembly);
@@ -55,10 +55,10 @@ namespace System.Security.InMemProfile
                     List<string> attributeDescriptions = new List<string>();
 
                     if (!result.Keys.Any(key => key.Equals(funcionalityGroup)))
-                        result.Add(funcionalityGroup, new Dictionary<string, Dictionary<string, Dictionary<string, List<string>>>>());
+                        result.Add(funcionalityGroup, new Dictionary<string, Dictionary<string, string>>());
 
                     if (!result[funcionalityGroup].Any(sbg => sbg.Key.Equals(funcionalitySubGroup)))
-                        result[funcionalityGroup].Add(funcionalitySubGroup, new Dictionary<string, Dictionary<string, List<string>>>());
+                        result[funcionalityGroup].Add(funcionalitySubGroup, new Dictionary<string, string>());
 
                     var subGroups = result[funcionalityGroup];
 
@@ -71,42 +71,13 @@ namespace System.Security.InMemProfile
                                                            GetValue(entityDisplayName, null).ToString();
 
                     if (!subGroups.Keys.Any(key => key.Equals(funcionalitySubGroup)))
-                        subGroups.Add(funcionalitySubGroup, new Dictionary<string, Dictionary<string, List<string>>>());
-                    
-                    subGroups[funcionalitySubGroup].Add(displayName, new Dictionary<string, List<string>>());
+                        subGroups.Add(funcionalitySubGroup, new Dictionary<string, string>());
 
-                    var entityAttributes = entity.GetProperties().Where(ent => ent.GetCustomAttributes(true)
-                                                                 .Any(atb => atb.GetType().Name.Contains("DisplayName")));
-
-                    Dictionary<string, List<string>> funcionalityAttributes;
-                    string funcionalityAccess = string.Empty;
-
-                    funcionalityAttributes = subGroups[funcionalitySubGroup][displayName];
-
-                    funcionalityAccess = entityFuncionality.
+                    var funcionalityAccess = entityFuncionality.
                                          GetType().GetField("FuncionalityAccess").
                                          GetValue(entityFuncionality).ToString();
 
-                    if (entityAttributes.Count() > 0)
-                    {
-                        foreach (var attrib in entityAttributes)
-                        {
-                            string attribDescription = ((DisplayNameAttribute)attrib.GetCustomAttributes(true).
-                                                                                     Where(atb => atb.GetType().
-                                                                                     Name.Contains("DisplayName")).
-                                                                                     FirstOrDefault()).DisplayName;
-                            if (!attributeDescriptions.Contains(attribDescription))
-                                attributeDescriptions.Add(attribDescription);
-                        }
-
-                        if (!funcionalityAttributes.Keys.Any(key => key.Equals(funcionalityAccess)))
-                            funcionalityAttributes.Add(funcionalityAccess, attributeDescriptions);
-                    }
-                    else
-                    {
-                        if (!funcionalityAttributes.Keys.Any(key => key.Equals(funcionalityAccess)))
-                            funcionalityAttributes.Add(funcionalityAccess, new List<string>(0));
-                    }
+                    subGroups[funcionalitySubGroup].Add(displayName, funcionalityAccess);
                  }
             }
 
