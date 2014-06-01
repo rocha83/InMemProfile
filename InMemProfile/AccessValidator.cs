@@ -84,6 +84,28 @@ namespace System.Security.InMemProfile
             return result;
         }
 
+        public static Dictionary<string, object> GetFuncionalitiesTree(Dictionary<string, Dictionary<string, Dictionary<string, string>>> funcList)
+        {
+            Dictionary<string, object> result = new Dictionary<string, object>();
+            Dictionary<string, object> resultSubGrp = new Dictionary<string, object>();
+            Dictionary<string, object> resultItems = new Dictionary<string, object>();
+            
+            foreach(var funcGrp in funcList)
+            {
+                foreach (var subGrp in (Dictionary<string, Dictionary<string, string>>)funcGrp.Value)
+                {
+                    foreach (var item in subGrp.Value)
+                        resultItems.Add(item.Key, item.Value);
+
+                    resultSubGrp.Add(subGrp.Key, resultItems);
+                }
+
+                result.Add(funcGrp.Key, resultSubGrp);
+            }
+            
+            return result;
+        }
+
         public static bool CheckPermission(string entityName, Assembly controllerAssembly, string profileKey)
         {
             return checkPermission(controllerAssembly, entityName, profileKey);
