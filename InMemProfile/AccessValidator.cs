@@ -27,10 +27,10 @@ namespace System.Security.InMemProfile
             return cryptoPwd.Equals(cripto.EncryptText(pwd));
         }
 
-        public static Dictionary<string, Dictionary<string, Dictionary<string, string>>> ListFuncionalities(string domainAssemblyPath, string controllerAssemblyPath, string profileKey)
+        public static Dictionary<string, Dictionary<string, Dictionary<string, object>>> ListFuncionalities(string domainAssemblyPath, string controllerAssemblyPath, string profileKey)
         {
-            Dictionary<string, Dictionary<string, Dictionary<string, string>>> result =
-                            new Dictionary<string, Dictionary<string, Dictionary<string, string>>>();
+            Dictionary<string, Dictionary<string, Dictionary<string, object>>> result =
+                            new Dictionary<string, Dictionary<string, Dictionary<string, object>>>();
 
             Assembly controllerAssembly;
             IEnumerable<Type> systemEntities = GetSystemEntities(domainAssemblyPath, out controllerAssembly);
@@ -55,10 +55,10 @@ namespace System.Security.InMemProfile
                     List<string> attributeDescriptions = new List<string>();
 
                     if (!result.Keys.Any(key => key.Equals(funcionalityGroup)))
-                        result.Add(funcionalityGroup, new Dictionary<string, Dictionary<string, string>>());
+                        result.Add(funcionalityGroup, new Dictionary<string, Dictionary<string, object>>());
 
                     if (!result[funcionalityGroup].Any(sbg => sbg.Key.Equals(funcionalitySubGroup)))
-                        result[funcionalityGroup].Add(funcionalitySubGroup, new Dictionary<string, string>());
+                        result[funcionalityGroup].Add(funcionalitySubGroup, new Dictionary<string, object>());
 
                     var subGroups = result[funcionalityGroup];
 
@@ -71,20 +71,31 @@ namespace System.Security.InMemProfile
                                                            GetValue(entityDisplayName, null).ToString();
 
                     if (!subGroups.Keys.Any(key => key.Equals(funcionalitySubGroup)))
-                        subGroups.Add(funcionalitySubGroup, new Dictionary<string, string>());
+                        subGroups.Add(funcionalitySubGroup, new Dictionary<string, object>());
 
                     var funcionalityAccess = entityFuncionality.
                                          GetType().GetField("FuncionalityAccess").
                                          GetValue(entityFuncionality).ToString();
 
+                    var funcionalityActions = ctrlAssemblyInstance.CreateInstance(string.Concat("SGEv2.Controllers.", entity.Name, "Controller"))
+                                                                  .GetType().GetMethods()
+                                                                  .Where(mtd => new List<string>() { "Index", "Create", "Edit", "Delete", 
+                                                                                                     "Approve", "Print", "Export" }.Contains(mtd.Name))
+                                                                  .Select(mtd => mtd.Name.Replace("Index", "View")).Distinct().ToList();
+
                     subGroups[funcionalitySubGroup].Add(displayName, funcionalityAccess);
+
+                    var funcActionsDict = new Dictionary<string, object>();
+                    foreach (var act in funcionalityActions)
+                        funcActionsDict.Add(act, null);
+                    subGroups[funcionalitySubGroup].Add(string.Concat(displayName, "Act"), funcActionsDict);
                  }
             }
 
             return result;
         }
 
-        public static Dictionary<string, object> GetFuncionalitiesTree(Dictionary<string, Dictionary<string, Dictionary<string, string>>> funcList)
+        public static Dictionary<string, object> GetFuncionalitiesTree(Dictionary<string, Dictionary<string, Dictionary<string, object>>> funcList)
         {
             Dictionary<string, object> result = new Dictionary<string, object>();
             Dictionary<string, object> resultSubGrp = new Dictionary<string, object>();
@@ -92,7 +103,7 @@ namespace System.Security.InMemProfile
             
             foreach(var funcGrp in funcList)
             {
-                foreach (var subGrp in (Dictionary<string, Dictionary<string, string>>)funcGrp.Value)
+                foreach (var subGrp in (Dictionary<string, Dictionary<string, object>>)funcGrp.Value)
                 {
                     foreach (var item in subGrp.Value)
                         resultItems.Add(item.Key, item.Value);
