@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace System.Security.InMemProfile
 {
-	public class AccessValidator
+    public class AccessValidator
     {
         #region Declarations
 
@@ -89,7 +89,7 @@ namespace System.Security.InMemProfile
                     foreach (var act in funcionalityActions)
                         funcActionsDict.Add(act, null);
                     subGroups[funcionalitySubGroup].Add(string.Concat(displayName, "Act"), funcActionsDict);
-                 }
+                }
             }
 
             return result;
@@ -100,8 +100,8 @@ namespace System.Security.InMemProfile
             Dictionary<string, object> result = new Dictionary<string, object>();
             Dictionary<string, object> resultSubGrp = new Dictionary<string, object>();
             Dictionary<string, object> resultItems = new Dictionary<string, object>();
-            
-            foreach(var funcGrp in funcList)
+
+            foreach (var funcGrp in funcList)
             {
                 foreach (var subGrp in (Dictionary<string, Dictionary<string, object>>)funcGrp.Value)
                 {
@@ -113,7 +113,27 @@ namespace System.Security.InMemProfile
 
                 result.Add(funcGrp.Key, resultSubGrp);
             }
-            
+
+            return result;
+        }
+
+        public static Dictionary<int, object> GetFuncionalTreeCodes(Dictionary<string, object> funcTree, object entityAccessProfile, Dictionary<int, object> result = null)
+        {
+            if (result == null)
+                result = new Dictionary<int,object>();
+
+            foreach (var node in funcTree)
+            {
+                if (node.Value is Dictionary<string, object>)
+                    GetFuncionalTreeCodes(node.Value as Dictionary<string, object>, entityAccessProfile, result);
+                else
+                {
+                    var nodeCode = entityAccessProfile.GetType().GetField(node.Key)
+                                                      .GetValue(entityAccessProfile).ToString();
+                    result.Add(Convert.ToInt32(nodeCode), node.Value);
+                }
+            }
+
             return result;
         }
 
@@ -176,7 +196,7 @@ namespace System.Security.InMemProfile
                 }
             }
 
-            var accessControl =  Activator.CreateInstance(profileType);
+            var accessControl = Activator.CreateInstance(profileType);
 
             int profileCode = int.Parse(accessControl.GetType().GetField(entityTypeName)
                                         .GetValue(accessControl).ToString());
