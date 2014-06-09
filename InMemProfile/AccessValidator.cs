@@ -81,7 +81,8 @@ namespace System.Security.InMemProfile
                                                                   .GetType().GetMethods()
                                                                   .Where(mtd => new List<string>() { "Index", "Create", "Edit", "Delete", 
                                                                                                      "Approve", "Print", "Export" }.Contains(mtd.Name))
-                                                                  .Select(mtd => mtd.Name.Replace("Index", "View")).Distinct().ToList();
+                                                                  .Select(mtd => string.Concat(displayName, "_", mtd.Name.Replace("Index", "View")))
+                                                                  .Distinct().ToList();
 
                     subGroups[funcionalitySubGroup].Add(displayName, funcionalityAccess);
 
@@ -117,20 +118,29 @@ namespace System.Security.InMemProfile
             return result;
         }
 
-        public static Dictionary<int, object> GetFuncionalTreeCodes(Dictionary<string, object> funcTree, object entityAccessProfile, Dictionary<int, object> result = null)
+        public static Dictionary<string, object> GetFuncionalTreeCodes(Dictionary<string, object> funcTree, object entityAccessProfile, Dictionary<string, object> result)
         {
-            if (result == null)
-                result = new Dictionary<int,object>();
+            if (result == null) result = new Dictionary<string, object>();
 
             foreach (var node in funcTree)
             {
+                string nodeKey = string.Empty;
+                if (!node.Key.Contains("_"))
+                    nodeKey = node.Key;
+                else
+                    nodeKey = node.Key.Substring(node.Key.IndexOf("_") + 1);
+
                 if (node.Value is Dictionary<string, object>)
-                    GetFuncionalTreeCodes(node.Value as Dictionary<string, object>, entityAccessProfile, result);
+                {
+                    var childResult = new Dictionary<string, object>(); 
+                    GetFuncionalTreeCodes(node.Value as Dictionary<string, object>, entityAccessProfile, childResult);
+                    result.Add(nodeKey, childResult);
+                }
                 else
                 {
                     var nodeCode = entityAccessProfile.GetType().GetField(node.Key)
                                                       .GetValue(entityAccessProfile).ToString();
-                    result.Add(Convert.ToInt32(nodeCode), node.Value);
+                    result.Add(string.Concat(nodeKey, ".", nodeCode), node.Value);
                 }
             }
 
