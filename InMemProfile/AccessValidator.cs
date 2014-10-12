@@ -27,7 +27,7 @@ namespace System.Security.InMemProfile
             return cryptoPwd.Equals(cripto.EncryptText(pwd));
         }
 
-        public static Dictionary<string, Dictionary<string, Dictionary<string, object>>> ListFuncionalities(string domainAssemblyPath, string controllerAssemblyPath, string profileKey)
+        public static Dictionary<string, Dictionary<string, Dictionary<string, object>>> ListFuncionalities(string namespacePrefix, string domainAssemblyPath, string controllerAssemblyPath, string profileKey)
         {
             Dictionary<string, Dictionary<string, Dictionary<string, object>>> result =
                             new Dictionary<string, Dictionary<string, Dictionary<string, object>>>();
@@ -77,11 +77,12 @@ namespace System.Security.InMemProfile
                                          GetType().GetField("FuncionalityAccess").
                                          GetValue(entityFuncionality).ToString();
 
-                    var funcionalityActions = ctrlAssemblyInstance.CreateInstance(string.Concat("SGEv2.Controllers.", entity.Name, "Controller"))
+                    var funcionalityActions = ctrlAssemblyInstance.CreateInstance(string.Concat(namespacePrefix, ".Controllers.", entity.Name, "Controller"))
                                                                   .GetType().GetMethods()
-                                                                  .Where(mtd => new List<string>() { "Index", "Create", "Edit", "Delete", 
+                                                                  .Where(mtd => new List<string>() { "Index", "Get", "Create", "Edit", "Delete", 
                                                                                                      "Approve", "Print", "Export" }.Contains(mtd.Name))
-                                                                  .Select(mtd => string.Concat(displayName, "_", mtd.Name.Replace("Index", "View")))
+                                                                  .Select(mtd => string.Concat(displayName, "_", mtd.Name.Replace("Index", "List")
+                                                                                                                         .Replace("Get", "View")))
                                                                   .Distinct().ToList();
 
                     subGroups[funcionalitySubGroup].Add(displayName, funcionalityAccess);
