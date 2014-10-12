@@ -99,13 +99,17 @@ namespace System.Security.InMemProfile
         public static Dictionary<string, object> GetFuncionalitiesTree(Dictionary<string, Dictionary<string, Dictionary<string, object>>> funcList)
         {
             Dictionary<string, object> result = new Dictionary<string, object>();
-            Dictionary<string, object> resultSubGrp = new Dictionary<string, object>();
-            Dictionary<string, object> resultItems = new Dictionary<string, object>();
+            Dictionary<string, object> resultSubGrp = null;
+            Dictionary<string, object> resultItems = null;
 
             foreach (var funcGrp in funcList)
             {
+                resultSubGrp = new Dictionary<string, object>();
+
                 foreach (var subGrp in (Dictionary<string, Dictionary<string, object>>)funcGrp.Value)
                 {
+                    resultItems = new Dictionary<string, object>();
+
                     foreach (var item in subGrp.Value)
                         resultItems.Add(item.Key, item.Value);
 
