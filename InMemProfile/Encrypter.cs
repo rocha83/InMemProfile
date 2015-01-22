@@ -10,7 +10,7 @@ namespace System.Security.InMemProfile
     {
         #region Declarations
 
-        DESCryptoServiceProvider cryptoProvider;
+        AesCryptoServiceProvider cryptoProvider;
         
         #endregion
 
@@ -18,8 +18,7 @@ namespace System.Security.InMemProfile
 
         public Encrypter()
         {
-            cryptoProvider = new DESCryptoServiceProvider();
-            cryptoProvider.KeySize = 64;
+            cryptoProvider = new AesCryptoServiceProvider();
 
             cryptoProvider.IV = Convert.FromBase64String(ConfigurationManager.AppSettings["RochasCriptoVetor"]);
             cryptoProvider.Key = Convert.FromBase64String(ConfigurationManager.AppSettings["RochasCriptoKey"]);
