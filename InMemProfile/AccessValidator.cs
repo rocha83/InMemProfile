@@ -162,6 +162,21 @@ namespace System.Security.InMemProfile
             return getBinaryProfileKey(profileKey)[funcPosition];
         }
 
+        public static bool IsRootUser(string profileKey)
+        {
+            bool result = false;
+            var binProfKey = getBinaryProfileKey(profileKey);
+
+            foreach (var key in binProfKey)
+            {
+                result = key;
+                if (!result)
+                    break;
+            }
+
+            return result;
+        }
+
         public static IEnumerable<Type> GetSystemEntities(string assemblyPath, out Assembly entitiesLib)
         {
             string libsPath = ConfigurationManager.AppSettings["BinPath"];
