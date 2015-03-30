@@ -162,14 +162,14 @@ namespace System.Security.InMemProfile
             return getBinaryProfileKey(profileKey)[funcPosition];
         }
 
-        public static bool IsRootUser(string profileKey)
+        public static bool IsRootUser(string profileKey, int finalKey)
         {
             bool result = false;
             var binProfKey = getBinaryProfileKey(profileKey);
 
-            foreach (var key in binProfKey)
+            for(var cont = 0; cont < finalKey; cont++)
             {
-                result = key;
+                result = binProfKey[cont];
                 if (!result)
                     break;
             }
