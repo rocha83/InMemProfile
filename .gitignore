@@ -213,3 +213,4 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+/InMemProfile/.vs/InMemProfile/v15/Server/sqlite3
