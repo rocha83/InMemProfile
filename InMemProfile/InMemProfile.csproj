@@ -1,84 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8ADC7B10-1AE1-4ABE-996A-C368BBE2EF74}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>System.Security.InMemProfile</RootNamespace>
-    <AssemblyName>System.Security.InMemProfile</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Annotations\AccessProfile.cs" />
-    <Compile Include="AccessValidator.cs" />
-    <Compile Include="Domain\Actions\ActionDescription_EN.cs" />
-    <Compile Include="Domain\Actions\ActionDescription_PT.cs" />
-    <Compile Include="Domain\Actions\ActionDescription_ES.cs" />
-    <Compile Include="Domain\Actions\ActionDescription_FR.cs" />
-    <Compile Include="Domain\Actions\ActionDescription_DE.cs" />
-    <Compile Include="Domain\EntityAccessProfile.cs" />
-    <Compile Include="Annotations\Funcionality.cs" />
-    <Compile Include="Domain\Entities\EntityName_DE.cs" />
-    <Compile Include="Domain\Entities\EntityName_FR.cs" />
-    <Compile Include="Domain\Entities\EntityName_ES.cs" />
-    <Compile Include="Domain\Entities\EntityName_EN.cs" />
-    <Compile Include="Domain\Entities\EntityName_PT.cs" />
-    <Compile Include="Domain\Funcionalities\Funcionality_DE.cs" />
-    <Compile Include="Domain\Funcionalities\Funcionality_FR.cs" />
-    <Compile Include="Domain\Funcionalities\Funcionality_ES.cs" />
-    <Compile Include="Domain\Funcionalities\Funcionality_EN.cs" />
-    <Compile Include="Domain\Funcionalities\Funcionality_PT.cs" />
-    <Compile Include="Domain\FuncionalityGroups\FuncionalityGroup_DE.cs" />
-    <Compile Include="Domain\FuncionalityGroups\FuncionalityGroup_FR.cs" />
-    <Compile Include="Domain\FuncionalityGroups\FuncionalityGroup_ES.cs" />
-    <Compile Include="Domain\FuncionalityGroups\FuncionalityGroup_EN.cs" />
-    <Compile Include="Domain\FuncionalityGroups\FuncionalityGroup_PT.cs" />
-    <Compile Include="Domain\FuncionalitySubGroups\FuncionalitySubGroup_DE.cs" />
-    <Compile Include="Domain\FuncionalitySubGroups\FuncionalitySubGroup_FR.cs" />
-    <Compile Include="Domain\FuncionalitySubGroups\FuncionalitySubGroup_ES.cs" />
-    <Compile Include="Domain\FuncionalitySubGroups\FuncionalitySubGroup_EN.cs" />
-    <Compile Include="Domain\FuncionalitySubGroups\FuncionalitySubGroup_PT.cs" />
-    <Compile Include="Encrypter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
